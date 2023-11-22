@@ -40,7 +40,7 @@ fn check_func(function_name: &str, lib: pkg_config::Library) -> bool {
     cmd.args(["--target", &std::env::var("TARGET").unwrap()]);
     cmd.args([
         "-C",
-        &format!("linker={}", std::env::var("RUSTC_LINKER").unwrap()),
+        &format!("linker={}", std::env::var("RUSTC_LINKER").unwrap_or(String::from("cc"))),
     ]);
 
     let output = cmd.output().unwrap();
